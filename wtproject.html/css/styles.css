@@ -1,0 +1,156 @@
+:root{
+  --red: #e63946;
+  --blue: #1d3557;
+  --white: #ffffff;
+  --gray: #f5f7fb;
+  --dark: #1a1a1a;
+  --shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Reset / base */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Arial, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background:var(--gray);
+  color:var(--dark);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Layout */
+.layout{display:flex;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{
+  width:240px;
+  background:var(--blue);
+  color:var(--white);
+  padding:22px 18px;
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  z-index:1500;
+  overflow:auto;
+}
+.sidebar h2{
+  margin:0 0 12px;
+  font-size:1.05rem;
+  text-align:center;
+  letter-spacing:0.4px;
+}
+.sidebar nav a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  margin:6px 0;
+  color:var(--white);
+  text-decoration:none;
+  border-radius:8px;
+  transition:background .18s;
+}
+.sidebar nav a i{min-width:18px;text-align:center}
+.sidebar nav a:hover,
+.sidebar nav a.active{ background:var(--red); color:var(--white); }
+
+/* Content area */
+.content{
+  margin-left:240px; /* IMPORTANT: keeps content to the right of sidebar */
+  padding:22px;
+  flex:1;
+}
+
+/* Menu toggle for mobile */
+.menu-toggle{
+  display:none;
+  position:fixed;
+  top:14px;
+  left:14px;
+  z-index:2001;
+  background:var(--red);
+  color:var(--white);
+  border:none;
+  padding:10px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:1.05rem;
+}
+
+/* Hero */
+.hero{
+  background:linear-gradient(135deg, rgba(29,53,87,0.9), rgba(230,57,70,0.85));
+  color:var(--white);
+  padding:40px 20px;
+  border-radius:10px;
+  text-align:center;
+}
+.hero h1{margin:0;font-size:1.8rem}
+.hero p{margin:10px auto 0;max-width:820px;opacity:0.95}
+
+/* Grid & Cards */
+.container{max-width:1100px;margin:18px auto;padding:8px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{
+  background:var(--white);
+  padding:14px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  transition:transform .16s;
+}
+.card:hover{transform:translateY(-6px)}
+.card h3{margin:0 0 8px;color:var(--red)}
+
+/* Forms */
+.form-card{background:var(--white);padding:16px;border-radius:10px;box-shadow:var(--shadow)}
+.form-card h1{margin:0 0 12px;color:var(--red);text-align:center}
+.form-card input, .form-card select, .form-card textarea{
+  width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid #ddd;font-size:1rem;
+}
+.contact-form input, .contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #ddd}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--red);
+  color:var(--white);
+  padding:10px 14px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  transition:background .15s,transform .08s;
+}
+.btn:hover{background:var(--blue)}
+.btn.ghost{background:transparent;border:2px solid var(--red);color:var(--red)}
+.btn.small{padding:8px 10px;font-size:0.95rem}
+.btn.large{padding:12px 18px;font-size:1.02rem}
+
+/* Stats */
+.stats{display:flex;gap:14px;margin-top:12px}
+.stat-box{flex:1;background:var(--white);padding:16px;border-radius:10px;box-shadow:var(--shadow);text-align:center}
+.stat-box h3{margin:0;color:var(--blue);font-size:1.6rem}
+
+/* Empty box */
+.empty-box{text-align:center;background:var(--white);padding:26px;border-radius:10px;box-shadow:var(--shadow);color:#666}
+.empty-box i{font-size:36px;color:var(--red)}
+
+/* Page nav */
+.page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px}
+
+/* Utility */
+.center{text-align:center}
+.small-muted{font-size:0.92rem;color:#666}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{left:-260px;transition:left .28s ease}
+  .sidebar.open{left:0}
+  .content{margin-left:0}
+  .menu-toggle{display:block}
+  .stats{flex-direction:column}
+  .hero{padding:30px 14px}
+}
